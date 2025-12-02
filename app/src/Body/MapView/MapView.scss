@@ -1,0 +1,360 @@
+.map-container {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, rgba(100, 109, 123, 0.05) 0%, rgba(100, 109, 123, 0.02) 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.loading,
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.map-controls {
+  background: #fff5e6;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(203, 127, 0, 0.15);
+  border: 1px solid rgba(203, 127, 0, 0.2);
+  border-radius: 12px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 10;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .controls-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .location-button {
+    padding: 0.75rem 1.5rem;
+    background-color: white;
+    color: rgba(3, 3, 3, 0.85);
+    border: 2px solid rgba(100, 109, 123, 0.85);
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(100, 109, 123, 0.1);
+    }
+
+    &.active {
+      background-color: rgba(100, 109, 123, 0.85);
+      color: white;
+    }
+  }
+
+  .error-message {
+    color: #c33;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    background-color: #fee;
+    border-radius: 6px;
+    border: 1px solid #fcc;
+
+    &.info {
+      color: #1976d2;
+      background-color: #e3f2fd;
+      border: 1px solid #90caf9;
+    }
+  }
+
+  .location-prompt {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 8px;
+    border-left: 4px solid #1976d2;
+
+    p {
+      color: #1565c0;
+      font-size: 1.25rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  .nearest-restroom {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(100, 109, 123, 0.1) 0%, rgba(100, 109, 123, 0.05) 100%);
+    border-radius: 8px;
+    border-left: 4px solid rgba(100, 109, 123, 0.85);
+
+    h3 {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 0.75rem;
+    }
+
+    .restroom-info {
+      strong {
+        font-size: 1.05rem;
+        color: #333;
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+
+      p {
+        color: #666;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        .tag {
+          background-color: rgba(100, 109, 123, 0.2);
+          color: rgba(100, 109, 123, 1);
+          padding: 0.25rem 0.75rem;
+          border-radius: 6px;
+          font-size: 0.85rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.map-wrapper {
+  position: relative;
+  height: calc(100vh - 120px - 250px);
+  min-height: 500px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+
+  .leaflet-map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.popup-content {
+  min-width: 200px;
+
+  h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+
+  .address {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .popup-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+
+    .tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+
+      &.accessible {
+        background-color: #e3f2fd;
+        color: #1976d2;
+      }
+
+      &.unisex {
+        background-color: #f3e5f5;
+        color: #7b1fa2;
+      }
+
+      &.changing {
+        background-color: #e8f5e9;
+        color: #388e3c;
+      }
+    }
+  }
+
+  .comments {
+    color: #555;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #eee;
+
+    strong {
+      color: #333;
+    }
+  }
+}
+
+// Custom user location marker styles
+.user-location-marker {
+  background: transparent;
+  border: none;
+
+  .user-marker-pin {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+
+    .user-marker-inner {
+      width: 16px;
+      height: 16px;
+      background: #4caf50;
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.6);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: rgba(76, 175, 80, 0.3);
+      border-radius: 50%;
+      animation: ripple 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.user-location-popup {
+  text-align: center;
+  
+  strong {
+    color: #4caf50;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    padding-top: 110px;
+  }
+
+  .map-controls {
+    padding: 1.5rem;
+    margin: 0 1rem 1.5rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .nearest-restroom {
+      margin-top: 1rem;
+      padding: 1rem;
+
+      h3 {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .map-wrapper {
+    height: calc(100vh - 110px - 200px);
+    min-height: 400px;
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-controls {
+    padding: 1rem;
+    margin: 0 0.75rem 1rem;
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .location-button {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    .location-prompt p {
+      font-size: 0.9rem;
+    }
+
+    .nearest-restroom {
+      padding: 1rem;
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .restroom-info {
+        strong {
+          font-size: 1rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .map-wrapper {
+    height: calc(100vh - 110px - 220px);
+    min-height: 350px;
+    margin: 0 0.75rem;
+  }
+}

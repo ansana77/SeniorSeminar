@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import Restroom from '../models/restroomModel.js';
-import { restrooms } from '../data/restrooms.js';
+import { restrooms } from '../data/restrooms.transform.js';
 
 dotenv.config();
 

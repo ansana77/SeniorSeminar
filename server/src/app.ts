@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from '../utils/connectDB.js';
 import restroomRoutes from '../routes/restroomRoutes.js';
+import authRoutes from '../routes/authRoutes.js';
 
 dotenv.config();
 
@@ -13,9 +14,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/restrooms', restroomRoutes);
+app.use('/api/auth', authRoutes);
 
 const startServer = async () => {
-    await connectDB(process.env.MONGO_URI!); 
+    await connectDB(process.env.MONGO_URI!);
 
     app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);

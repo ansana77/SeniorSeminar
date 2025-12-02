@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --menu-font-family: "Ubuntu", "sans-serif";
+}
+.navbar {
+  background-color: #cb7f00;
+  color: var(--text-color);
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  font-family: var(--menu-font-family);
+  text-transform: uppercase;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--spacing-xl);
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem; 
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+  }
+
+  a {
+    padding: 12px 24px;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: var(--roboto);
+    background-color: transparent;
+    color: rgb(255, 255, 254);
+    border: 2px solid var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      background-color: var(--text-color);
+      color: rgb(211, 188, 162);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.authentication-container {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1.5rem; 
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: flex;
+  }
+
+  .user-greeting {
+    color: rgb(255, 255, 254);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .logout-button {
+    padding: 12px 24px;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: var(--roboto);
+    background-color: transparent;
+    color: rgb(255, 255, 254);
+    border: 2px solid var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: #c33;
+      border-color: #c33;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  a {
+    padding: 12px 24px;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: var(--roboto);
+    background-color: transparent;
+    color: rgb(255, 255, 254);
+    border: 2px solid var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      background-color: var(--text-color);
+      color: rgb(211, 188, 162);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .authentication-container {
+    gap: 1rem;
+
+    .user-greeting {
+      font-size: 16px;
+      padding: 10px 16px;
+    }
+
+    .logout-button,
+    a {
+      font-size: 18px;
+      padding: 10px 16px;
+      min-width: 100px;
+    }
+  }
+}
